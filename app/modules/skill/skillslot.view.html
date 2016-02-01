@@ -1,0 +1,18 @@
+
+<div data-ng-mouseenter="onThis = true"
+     data-ng-mouseout="onThis = false"
+     data-ng-class="{ 'highlighted' : onThis}"
+     data-ng-click="onEdit = true"
+>
+    <div ng-hide="onEdit"
+         data-ng-bind="skill.skill"
+         data-ng-click="onEdit = true"
+         ></div>
+    <input
+            data-ng-show="onEdit"
+        type="text"
+        data-ng-model="skill.skill"
+        data-ng-blur="onEdit = false"
+    >
+
+</div>

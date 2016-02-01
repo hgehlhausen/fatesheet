@@ -1,0 +1,7 @@
+<div class="label"><span>{{trackName}}</span></div>
+<span
+  data-ng-repeat="box in track"
+  class="stressBox white-shadow"
+  ng-click="highlighted = !highlighted"
+  ng-style="highlighted ? { background: 'darkgray'} : {}"
+><div class="super_script">{{$index+1}}</div></span>

@@ -1,0 +1,61 @@
+* {
+    margin : 0;
+    padding : 0;
+}
+body {
+    text-align: center;
+}
+input[type=text] {
+    width: 100%;
+    height: 1.3em;
+    line-height: 1.3em;
+    vertical-align: middle;
+    border: none;
+}
+th {
+    background-color: gray;
+}
+.main_content {
+    width: 768px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid gray;
+}
+table {
+    display: table;
+    border: 1px solid black;
+}
+.name {
+    width: 100%;
+}
+.name th {
+    width: 10%;
+}
+.name td {
+    width: 90%;
+}
+.name tbody {
+    width: 100%;
+}
+.name td input {
+    width: 100%;
+    border: none;
+}
+.aspects {
+    width: 49%;
+    float: left;
+    overflow: auto;
+}
+
+.aspects tbody {
+    width: 100%;
+}
+.aspects th {
+    width: 35%;
+}
+.aspects td {
+    width: 65%;
+    background-color: green;
+}
+.aspects input[type=text] {
+}

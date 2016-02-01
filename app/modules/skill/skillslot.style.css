@@ -1,0 +1,23 @@
+.highlighted {
+    background-color: yellow;
+}
+skillslot {
+    position: relative;
+}
+skillslot .roundbtn {
+    border-radius: 50%;
+    border-style : solid;
+    background-color: lightblue;
+    color : black;
+}
+skillslot .roundbtn.skillcontrol {
+    height: 50%;
+    width: 50%;
+    position:absolute;
+}
+skillslot .roundbtn.skillcontrol.top {
+    top: 0;
+}
+skillslot .roundbtn.skillcontrol.bottom {
+    bottom: 0;
+}

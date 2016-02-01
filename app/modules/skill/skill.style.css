@@ -1,0 +1,28 @@
+.skills {
+    background: lightseagreen;
+    width: 100%;
+}
+table.skills {
+    table-layout: auto!important;
+    display:table;
+    width: 100%;
+}
+.skills th {
+    background: black;
+    color: white;
+}
+.skills td {
+    border: 1px solid black;
+    margin: 1px;
+}
+.skills tbody tr td:first-child {
+    width: 2em!important;
+    background: lightgray;
+}
+.skills .editBox {
+
+}
+.skills .editBox textarea {
+    width: 100%;
+    height: 288px;
+}

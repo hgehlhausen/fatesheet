@@ -1,0 +1,18 @@
+<table class="skills">
+    <thead>
+    <tr><td ng-click="onEditClick()" data-ng-class="{ 'highlighted' : editSkills }"></td><th colspan="7">Skills ({{totalRanks}})</th></tr>
+    <tr><td style="border:none;"></td><th data-ng-repeat="total in skillTotals">{{total.total}}</th></tr>
+    </thead>
+    <tbody>
+    <tr data-ng-repeat="level in rotated">
+        <td>+{{rotated.length - $index}}</td>
+        <td data-ng-repeat="skill in level.arr" >
+            {{skill.toString()}}
+            <skillslot data-ng-model="skill" skill="skill" column="skill.column" />
+        </td>
+    </tr>
+    </tbody>
+    <tfoot data-ng-show="editSkills" class="editBox">
+    <tr><td colspan="200"><label>Edit the skills needed.</label><br><textarea data-ng-model="skilldata"></textarea></td></tr>
+    </tfoot>
+</table>
