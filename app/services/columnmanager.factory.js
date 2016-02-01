@@ -314,7 +314,7 @@
                         //    return row[i];
                         //});
                     //});
-                    columns = _rotateArray(csvLines);
+                    columns = mgr._rotateArray(csvLines);
                     console.log('cols?', columns);
                     //Add columns;
                     for (idx = 0; idx < columns.length; idx++) {
