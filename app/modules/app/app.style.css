@@ -1,0 +1,32 @@
+div.titlebar {
+    display:block;
+    top : 0;
+    position: relative;
+    height: 0.65in;
+    background-color: steelblue;
+    background-image: linear-gradient(to bottom,#1b75bc 0,#15598f 100%);
+    text-align: left;
+}
+div.titlebar span {
+    position: relative;
+    display: block;
+    font-weight: bold;
+    font-size: 20pt;
+    font-family: 'Helvetica Neue', sans-serif;
+    text-shadow: 2px 2px 0 black;
+    color: white;
+    padding-left: 0.2in;
+    top: 50%;
+    text-align: left;
+    transform: translateY(-50%);
+}
+div.titlebar button {
+    height: 2.5em;
+    background-color: green;
+    background-image : none;
+    color : white;
+    font-family : Tahoma, sans-serif;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    float: right;
+}

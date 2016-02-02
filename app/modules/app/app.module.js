@@ -3,7 +3,10 @@
         [
             'services',
             'skills',
-            'stress'
+            'stress',
+            'aspects',
+            'character',
+            'LocalStorageModule'
         ]);
 })();
 

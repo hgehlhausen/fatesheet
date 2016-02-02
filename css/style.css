@@ -4,6 +4,7 @@
 }
 body {
     text-align: center;
+    font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
 }
 input[type=text] {
     width: 100%;

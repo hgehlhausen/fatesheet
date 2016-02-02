@@ -1,6 +1,11 @@
 <div class="main_content">
-    <!--<charactername />-->
-    <!--<aspects />-->
+    <div class="titlebar">
+        <span>FATE CORE - Character Sheet</span>
+        <button data-ng-click="sheet.doSave()">Save</button>
+        <button ng-click="sheet.doLoad()">Load</button>
+    </div>
+    <div charactername ></div>
+    <div aspect-section></div>
     <skillblock></skillblock>
     <stress stress-box-obj="" class="stress"></stress>
 </div>

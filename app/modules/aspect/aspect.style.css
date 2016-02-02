@@ -1,0 +1,90 @@
+
+div[aspect-section] {
+    display: block;
+    width: 100%;
+    position:relative;
+}
+div[aspect-section] .titlebar {
+    background-color: steelblue;
+    background-image: linear-gradient(to bottom,#1b75bc 0,#15598f 100%);
+}
+div[aspect-section] .row {
+    width: 100%;
+    clear: both;
+    height: 2em;
+}
+div[aspect-slot] {
+    display: block;
+    text-align: left;
+    overflow: visible;
+    white-space: nowrap;
+    width: 100%;
+    position: relative;
+    font-size: 12pt;
+}
+div[aspect-slot] > div {
+    height: 2.1em;
+}
+div[aspect-slot] .label {
+    width: 150px;
+    text-align: center;
+    background-color: steelblue;
+    display: block;
+    padding-left: 5px;
+    padding-right: 5px;
+    float: left;
+    /*overflow: visible;*/
+}
+div[aspect-slot] .label span {
+    display: block;
+    position:relative;
+    top : 50%;
+    color: white;
+    height: 1em;
+    text-shadow : 2px 2px 0 black;
+    transform : translateY(-50%);
+}
+div[aspect-slot] input[type=text] {
+    width: 500px;
+    position: relative;
+    display: block;
+    height: 1.95em;
+    border-bottom: 0.05em solid lightgray;
+    font-size: 12pt;
+    top: 50%;
+    /*transform: translateY(-50%);*/
+    overflow: visible;
+    float: left;
+}
+div[aspect-slot] .ctrl {
+    display: inline-block;
+    position: relative;
+    top: 50%;
+    /*transform: translateY(-50%);*/
+    width: 100px;
+    background-color: gray;
+}
+div[aspect-slot] .ctrl .add, div[aspect-slot] .ctrl .minus {
+    background-color: lightgreen;
+    border-radius: 50%;
+    position: relative;
+    width: 1.9em;
+    height:1.9em;
+    text-align: center;
+}
+div[aspect-slot] .ctrl .add span, div[aspect-slot] .ctrl .minus span {
+    position: relative;
+    display: block;
+    top : 50%;
+    transform : translateY(-50%);
+    font-weight: bold;
+    font-size : 16pt;
+}
+div[aspect-slot] .ctrl .add {
+    float: left;
+    margin-left: 10px;
+}
+div[aspect-slot] .ctrl .minus {
+    float: right;
+    margin-right: 10px;
+}

@@ -1,5 +1,5 @@
 .skills {
-    background: lightseagreen;
+    background: steelblue;
     width: 100%;
 }
 table.skills {
@@ -8,11 +8,13 @@ table.skills {
     width: 100%;
 }
 .skills th {
-    background: black;
+    background-color: steelblue;
+    background-image: linear-gradient(to bottom,#1b75bc 0,#15598f 100%);
     color: white;
+    text-shadow: 2px 2px 0 black;
 }
 .skills td {
-    border: 1px solid black;
+    border: 1px solid lightgray;
     margin: 1px;
 }
 .skills tbody tr td:first-child {
@@ -25,4 +27,17 @@ table.skills {
 .skills .editBox textarea {
     width: 100%;
     height: 288px;
+    font-size: 14pt;
+}
+.skills .edit_icon {
+    background-image : url('gui/edit.svg'), linear-gradient(to bottom,#1b75bc 0,#15598f 100%);
+    background-size : contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 2em;
+    width: 2em;
+    border: none;
+}
+.skills .icon_color {
+    background: white;
 }
