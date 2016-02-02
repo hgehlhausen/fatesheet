@@ -3,5 +3,7 @@
  * @author hgehlhausen
  */
 (function () {
-    angular.module('services',[]);
+    angular.module('services',[
+        'LocalStorageModule'
+    ]);
 })();

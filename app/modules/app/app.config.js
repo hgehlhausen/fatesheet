@@ -5,22 +5,16 @@
 (function(){
     'use strict';
     angular.module('app')
-        .config( configure);
+        .config( configure );
 
-    configure.$inject = ['$stateProvider','$urlRouterProvider'];
+    configure.$inject = ['localStorageServiceProvider'];
 
-    function configure ($stateProvider,$urlRouterProvider) {
-        $urlRouterProvider.otherwise('/');
-
-        $stateProvider
-            .state({
-                url : '/',
-                templateUrl: APP+'app.view.html',
-                controller : 'app.main',
-                controllerAs : 'Main'
-            })
-            .state({
-                url : '/skill'
-            })
+    function configure (localStorageProvider) {
+        localStorageProvider
+            .setPrefix('fatesheet')
+            .setStorageType('localStorage')
+            //.setStorageCookie(45,'fatesheet')
+            //.setStorageCookieDomain('')
+            .setNotify(true,true); //@todo set this to false/false in production.
     }
 })();
