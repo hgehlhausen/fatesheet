@@ -32,6 +32,8 @@
             mgr.fromCsv = fromCsv;
             mgr.getTallestColumn = getTallestColumn;
             mgr._rotateArray = _rotateArray;
+            mgr.getData = getData;
+            mgr.exportCols = exportCols;
             //@todo this needs to work to prevent repeats in separate columns.
             // Optimally, this adds the skill to each of the columns.
             mgr.addSkill = function (adding, position) {
@@ -347,6 +349,31 @@
                 console.log('====');
                 console.log(result);
                 console.log('====');
+                return result;
+            }
+
+            function exportCols (type) {
+                var result = '',
+                    dataArray = [];
+                switch(type) {
+                    case 'text/csv':
+                    default:
+                        dataArray = _rotateArray( this.getData());
+                        result = (dataArray.map(function(row,idx) {
+                            return row.join(',');
+                        })).reverse().join('\n');
+                        return result;
+                }
+            }
+            function getData () {
+                var mgr = this,
+                    result = [];
+                mgr.cols.map(function (column,idx) {
+                    result[idx] = [];
+                    column.skills.map(function (skill,idy) {
+                        result[idx][idy] = skill.skill;
+                    });
+                });
                 return result;
             }
         }

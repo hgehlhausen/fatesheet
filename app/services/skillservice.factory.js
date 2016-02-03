@@ -13,7 +13,10 @@
             data : '',
             datatype : 'text/csv',
             generateRotated : generateRotated,
-            getStressTrackSkills : getStressTrackSkills
+            getStressTrackSkills : getStressTrackSkills,
+            getData : getData,
+            setData : setData,
+            exportCols : exportCols
         };
         return service;
         function generateRotated (rows) {
@@ -42,6 +45,35 @@
                 will : mgr.getBonus('will'),
                 physique : mgr.getBonus('physique')
             };
+        }
+        function getData () {
+            var mgr = this.mgr,
+                result = [];
+            mgr.cols.map(function (column,idx) {
+                result[idx] = [];
+                column.skills.map(function (skill,idy) {
+                    result[idx][idy] = skill.skill;
+                });
+            });
+            return result;
+        }
+        function setData (data) {
+            var mgr = this.mgr;
+            if(angular.isUndefined(data)) { return; }
+            if (!data) { return; }
+            if (!angular.isArray(data)) {
+                data = [data];
+            }
+            mgr.resetCols();
+
+            data.map(function (column,idx) {
+                mgr.addNewColumn(
+                    new SkillColumn(column)
+                );
+            });
+        }
+        function exportCols (type) {
+            return this.mgr.exportCols(type);
         }
     }
 
