@@ -10,16 +10,19 @@
     function CharacterService  ( Stress , SkillService, localStorageProvider) {
         var character = {
             id : generateId(),
+            isCharacter : true,
+            name : '',
+            description : '',
+            skills : SkillService,
             save : save,
             load : load,
             erase : erase
         };
-        character.name = '';
-        character.skills = SkillService; // Assigned later by the skills module
+
         activate();
         return character;
         function activate() {
-            //character.updateSkillsAndStress();
+            //@todo try to load
         }
         function generateId () {
             var character = this;
@@ -39,14 +42,60 @@
             }
             return hash;
         }
-        function save () {
-            localStorageProvider.set( character.id, character );
+        function save (charactersheet) {
+            var format = {
+                name   : charactersheet.name,
+                description : charactersheet.description,
+                skills : character.skills.getData(),
+                aspects : {
+                    highconcept : charactersheet.highconcept,
+                    trouble     : charactersheet.trouble,
+                    minor1      : charactersheet.minor1,
+                    minor2      : charactersheet.minor2,
+                    minor3      : charactersheet.minor3
+                }
+            };
+            console.log('format',format);
+            localStorageProvider.set( character.id, format );
+            localStorageProvider.set('last_character',character.id);
         }
-        function load (id) {
+        function load (charactersheet, id) {
+            console.log('character.load');
+            var tmp = character,
+                skills = [];
             if (angular.isUndefined(id)) {
-                character = localStorageProvider.get('lastCharacter');
+                tmp = localStorageProvider.get(
+                    localStorageProvider.get('last_character')
+                );
             } else {
-                character = localStorageProvider.get(id);
+                console.log('id provided');
+                tmp = localStorageProvider.get(id);
+            }
+            if (tmp) {
+                if (tmp.isCharacter) {
+                    console.log('isCharacter!');
+                }
+                if (tmp.skills) {
+                    console.log('skills assigning!');
+                    character.skills.setData(tmp.skills);
+                    console.log('skills assigned');
+                }
+                if (tmp.name) {
+                    character.name = tmp.name;
+                    charactersheet.name = tmp.name;
+                }
+                if (tmp.description) {
+                    character.description = tmp.description;
+                    charactersheet.description = tmp.description;
+                }
+                if (tmp.aspects) {
+                    character.aspects = tmp.aspects;
+                    //Populate aspects
+                    for (var aspect in tmp.aspects) {
+                        //console.log('aspect:')
+                        charactersheet[aspect] = tmp.aspects[aspect];
+                    }
+                }
             }
         }
         function erase (id) {

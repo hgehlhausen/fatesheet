@@ -1,11 +1,12 @@
-<div class="main_content">
+<form class="main_content" name="charactersheet">
+    {{charactersheet | json}}
     <div class="titlebar">
         <span>FATE CORE - Character Sheet</span>
-        <button data-ng-click="sheet.doSave()">Save</button>
-        <button ng-click="sheet.doLoad()">Load</button>
+        <button save data-ng-click="doSave()" class="icon-floppy-disk"></button>
+        <button load ng-click="doLoad()" class="icon-loop2"></button>
     </div>
     <div charactername ></div>
-    <div aspect-section></div>
+    <div aspect-section cs-form="charactersheet"></div>
     <skillblock></skillblock>
     <stress stress-box-obj="" class="stress"></stress>
-</div>
+</form>

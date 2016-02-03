@@ -14,14 +14,16 @@
         $scope.doSave = doSave;
         $scope.doLoad = doLoad;
 
+        //$scope.update = onFormUpdate;
+
         return sheet;
         function doSave () {
             console.log('save!');
-            Character.save();
+            Character.save($scope.charactersheet);
         }
         function doLoad () {
             console.log('load!');
-            Character.load();
+            Character.load($scope.charactersheet);
         }
     }
 })();

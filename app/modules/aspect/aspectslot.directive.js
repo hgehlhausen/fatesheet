@@ -11,11 +11,14 @@
             restrict : 'EA',
             link : link,
             templateUrl : 'app/modules/aspect/aspectslot.view.html',
-            scope : {}
+            scope : {
+                csModel : '=',
+                csForm : '='
+            }
         };
         function link (scope,element,attr) {
             scope.label = attr.label;
-            scope.showctrl = ( scope.label == 'Minor Aspect');
+            scope.showctrl = false && ( scope.label == 'Minor Aspect');
         }
     }
 })();

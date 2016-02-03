@@ -4,16 +4,7 @@
  */
 ( function () {
     angular.module('skills')
-        .controller('skills.skills',skills)
-        .filter('reverse', function() {
-            return function(items) {
-                if (!angular.isArray(items)) {
-                    console.warn('empty function supplied to reverse');
-                    return [];
-                }
-                return items.slice().reverse();
-            };
-        });
+        .controller('skills.skills',skills);
     skills.$inject = ['$scope','$http','SkillService', 'Stress','CharacterService'];
     function skills( $scope,  $http, SkillService, Stress, Character) {
         $scope.columnMgr = Character.skills.mgr;
@@ -40,7 +31,7 @@
             if (!$scope.editSkills) {
                 $scope.onSkillSave();
             } else {
-                console.log()
+                $scope.skilldata = SkillService.exportCols($scope.skilldatatype);
             }
         };
         function onSkillSave () {
