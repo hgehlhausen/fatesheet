@@ -22,8 +22,6 @@
         };
         function link (scope,element,attr,ngM) {
             if (!scope.boxLength || Number(scope.boxLength) < 2) {
-                console.log('calculating stress length');
-                console.log(2 + Math.ceil(Skills.mgr.getBonus(scope.skill) / 2));
                 scope.length = 2 + Math.ceil(Skills.mgr.getBonus(scope.skill) / 2);
             } else {
                 scope.length = Number(scope.boxLength);
@@ -63,12 +61,11 @@
 
             scope.$watch(
                 function watchSkill( scope ) {
-                    console.log('skill watch', 'data::' + Skills.data);
-                    return ( Skills.data);
+                    return ( Skills.getStressTrackSkills()[scope.skill]);
                 },
                 function handleSkillChange( newValue, oldValue ) {
-                    console.log('skill changed',newValue,oldValue);
-                    scope.length = 2 + Math.ceil(Skills.mgr.getBonus(scope.skill) / 2);
+                    scope.length = 2 + Math.ceil(newValue / 2);
+                    ngM.$render();
                 }
             );
         }
