@@ -42,10 +42,15 @@
         }
         function getStressTrackSkills () {
             var mgr = this.mgr;
-            return {
-                will : mgr.getBonus('will'),
-                physique : mgr.getBonus('physique')
-            };
+            if (!mgr.trackSkills) {
+                mgr.trackSkills = {
+                    will : 0,
+                    physique: 0
+                };
+            }
+            mgr.trackSkills.will = mgr.getBonus('will');
+            mgr.trackSkills.physique = mgr.getBonus('physique');
+            return mgr.trackSkills;
         }
         function getData () {
             var mgr = this.mgr,
