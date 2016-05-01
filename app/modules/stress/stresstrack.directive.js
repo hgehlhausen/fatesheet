@@ -50,6 +50,19 @@
                         }
                     }
                 }
+                if (scope.length != scope.track.length) {
+                    i = scope.track.length;
+                    while ( scope.track.length != scope.length) {
+                        if (scope.track.length > scope.length) {
+                            scope.track.pop();
+                            i--;
+                        }
+                        if (scope.track.length < scope.length) {
+                            scope.track.push({ idx : i, value : (i+1), highlighted : false});
+                            i++;
+                        }
+                    }
+                }
                 for (i = 0; i < parsed.length; i++) {
                     if (i < scope.track.length) {
                         scope.track[i].value = (i+1);
