@@ -21,10 +21,11 @@
         activate();
         return this;
         function activate () {
-
+            console.log('activating skills');
             $scope.rotated = SkillService.generateRotated();
             $scope.totalRanks = SkillService.mgr.getTotalRanks();
             $scope.skillTotals = SkillService.mgr.getSkillTotals();
+            console.log('activated!');
         }
         function onEditClick () {
             $scope.editSkills = !$scope.editSkills;
@@ -37,15 +38,15 @@
         function onSkillSave () {
             $scope.columnMgr.importCols( $scope.skilldata, $scope.skilldatatype);
             $scope.rotated = SkillService.generateRotated();
-            console.log({
-                will : SkillService.mgr.getBonus('will'),
-                physique : SkillService.mgr.getBonus('physique')
-            });
+              //console.log({
+              //  will : SkillService.mgr.getBonus('will'),
+              //  physique : SkillService.mgr.getBonus('physique')
+            //});
             Stress.updateStressBoxes();
             $scope.skillTotals = Character.skills.mgr.getSkillTotals();
             $scope.totalRanks = Character.skills.mgr.getTotalRanks();
-            console.log('Character:',Character);
-            console.log('Stress:',Stress);
+            //console.log('Character:',Character);
+            //console.log('Stress:',Stress);
         };
         function onSkillClick (skillName) {
             alert( skillName + ' for a ' + $scope.columnMgr.getBonus(skillName))

@@ -6,8 +6,8 @@
     console.log('loading Character');
     angular.module('services')
         .factory( 'CharacterService', CharacterService);
-    CharacterService.$inject = ['Stress', 'SkillService', 'localStorageService'];
-    function CharacterService  ( Stress , SkillService, localStorageProvider) {
+    CharacterService.$inject = ['$rootScope','Stress', 'SkillService', 'localStorageService'];
+    function CharacterService  ($rootScope, Stress , SkillService, localStorageProvider) {
         var character = {
             id : generateId(),
             isCharacter : true,
@@ -22,7 +22,13 @@
         activate();
         return character;
         function activate() {
-            //@todo try to load
+            var tmp = localStorageProvider.get(
+                localStorageProvider.get('last_character')
+                ),
+                id = tmp.id;
+            setTimeout( function () {
+                load(tmp,id);
+            },1);
         }
         function generateId () {
             var character = this;
@@ -44,23 +50,29 @@
         }
         function save (charactersheet) {
             var format = {
+                isCharacter : true,
                 name   : charactersheet.name,
                 description : charactersheet.description,
-                skills : character.skills.getData(),
-                aspects : {
-                    highconcept : charactersheet.highconcept,
-                    trouble     : charactersheet.trouble,
-                    minor1      : charactersheet.minor1,
-                    minor2      : charactersheet.minor2,
-                    minor3      : charactersheet.minor3
-                }
+                skills : character.skills.exportCols(),
+                stress : {
+                    physical : charactersheet.physical,
+                    mental   : charactersheet.mental,
+                    hunger   : charactersheet.hunger
+                },
+                hungerActive : charactersheet.hungerActive,
+                aspects : [
+                    { type : 'highconcept' , value : charactersheet.highconcept },
+                    { type : 'trouble',    value  : charactersheet.trouble} ,
+                    { type : 'minor1',    value  : charactersheet.minor1} ,
+                    { type : 'minor2',    value  : charactersheet.minor2} ,
+                    { type : 'minor3',    value  : charactersheet.minor3}
+                ]
             };
             console.log('format',format);
             localStorageProvider.set( character.id, format );
             localStorageProvider.set('last_character',character.id);
         }
         function load (charactersheet, id) {
-            console.log('character.load');
             var tmp = character,
                 skills = [];
             if (angular.isUndefined(id)) {
@@ -68,7 +80,6 @@
                     localStorageProvider.get('last_character')
                 );
             } else {
-                console.log('id provided');
                 tmp = localStorageProvider.get(id);
             }
             if (tmp) {
@@ -77,7 +88,7 @@
                 }
                 if (tmp.skills) {
                     console.log('skills assigning!');
-                    character.skills.setData(tmp.skills);
+                    character.skills.fromCsv(tmp.skills);
                     console.log('skills assigned');
                 }
                 if (tmp.name) {
@@ -88,14 +99,27 @@
                     character.description = tmp.description;
                     charactersheet.description = tmp.description;
                 }
-                if (tmp.aspects) {
-                    character.aspects = tmp.aspects;
+                if (tmp.aspects && tmp.aspects.length) {
+                    character.aspects = {};
                     //Populate aspects
-                    for (var aspect in tmp.aspects) {
-                        //console.log('aspect:')
-                        charactersheet[aspect] = tmp.aspects[aspect];
-                    }
+                    tmp.aspects.forEach(function (aspect) {
+                        charactersheet[aspect.type] = aspect.value;
+                    });
                 }
+                if (tmp.hungerActive) {
+                    console.log('setting hunger active',tmp.hungerActive);
+                    charactersheet.hungerActive = tmp.hungerActive;
+                    character.hungerActive = tmp.hungerActive;
+                }
+                if (tmp.stress) {
+                    charactersheet.hunger   = tmp.stress.hunger;
+                    charactersheet.mental   = tmp.stress.mental;
+                    charactersheet.physical = tmp.stress.physical;
+                    character.hunger        = tmp.stress.hunger;
+                    character.mental        = tmp.stress.mental;
+                    character.physical      = tmp.stress.physical;
+                }
+
             }
         }
         function erase (id) {

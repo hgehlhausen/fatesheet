@@ -4,9 +4,10 @@ stress {
 }
 .stress {
     border: 1px solid black;
-    height: 9.1em;
+    height: 12.1em;
 }
 .super_script {
+    pointer-events: none;
     position:relative;
     top: -50%;
     right: -50%;

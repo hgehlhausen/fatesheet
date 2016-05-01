@@ -14,15 +14,22 @@
         $scope.doSave = doSave;
         $scope.doLoad = doLoad;
 
-        //$scope.update = onFormUpdate;
+        $scope.stresstest = '0|1|2|0|4';
 
+        activate();
         return sheet;
+
+        function activate () {
+            //Async to allow other libraries to be done after this "activates"
+            setTimeout(function () {
+                doLoad();
+            },1);
+        }
+
         function doSave () {
-            console.log('save!');
             Character.save($scope.charactersheet);
         }
         function doLoad () {
-            console.log('load!');
             Character.load($scope.charactersheet);
         }
     }

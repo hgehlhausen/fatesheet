@@ -1,5 +1,5 @@
 <form class="main_content" name="charactersheet">
-    {{charactersheet | json}}
+    <!--{{charactersheet | json}}-->
     <div class="titlebar">
         <span>FATE CORE - Character Sheet</span>
         <button save data-ng-click="doSave()" class="icon-floppy-disk"></button>
@@ -8,5 +8,5 @@
     <div charactername ></div>
     <div aspect-section cs-form="charactersheet"></div>
     <skillblock></skillblock>
-    <stress stress-box-obj="" class="stress"></stress>
+    <stress cs-form="charactersheet" class="stress"></stress>
 </form>

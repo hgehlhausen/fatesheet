@@ -4,9 +4,9 @@
  */
 (function () {
     'use strict';
+    SkillService.$inject = ['SkillColumn','SkillColumnManager'];
     angular.module('services')
         .factory('SkillService',SkillService);
-    SkillService.$inject = ['SkillColumn','SkillColumnManager'];
     function SkillService (SkillColumn, SkillColumnManager) {
         var service = {
             mgr : new SkillColumnManager(),
@@ -16,7 +16,8 @@
             getStressTrackSkills : getStressTrackSkills,
             getData : getData,
             setData : setData,
-            exportCols : exportCols
+            exportCols : exportCols,
+            fromCsv : fromCsv
         };
         return service;
         function generateRotated (rows) {
@@ -74,6 +75,9 @@
         }
         function exportCols (type) {
             return this.mgr.exportCols(type);
+        }
+        function fromCsv (csvData) {
+            return this.mgr.fromCsv(csvData);
         }
     }
 
