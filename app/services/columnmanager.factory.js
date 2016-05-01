@@ -14,6 +14,7 @@
             } else {
                 mgr.cols = [];
             }
+            mgr.trackSkills = {};
             mgr.getTotalRanks = getTotalRanks;
             mgr.getSkillTotals = getSkillTotals;
             mgr.getBonus = getBonus;
@@ -36,7 +37,13 @@
             mgr.exportCols = exportCols;
             //@todo this needs to work to prevent repeats in separate columns.
             // Optimally, this adds the skill to each of the columns.
-            mgr.addSkill = function (adding, position) {
+            mgr.addSkill = addSkill;
+            mgr.hasEmptySlot = hasEmptySlot;
+
+            return mgr;
+
+
+            function addSkill (adding, position) {
                 var mgr = this,
                     col = false;
                 if (angular.isUndefined(position) || position == 1) {
@@ -52,14 +59,13 @@
                     col.add(adding);
                 }
                 mgr.sort();
-            };
-            mgr.hasEmptySlot = function (position, column) {
+            }
+            function hasEmptySlot (position, column) {
                 if (column.skills.length <= position) {
                     return;
                 }
                 return column;
             }
-            return mgr;
 
             function getTotalRanks() {
                 var mgr = this,
@@ -205,7 +211,7 @@
                 }
             }
 
-            function eachColumn(action, context, arguments) {
+            function eachColumn (action, context, arguments) {
                 var mgr = this,
                     cols = mgr.cols,
                     idx = 0;
