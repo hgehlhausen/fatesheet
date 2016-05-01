@@ -89,12 +89,10 @@
             function getColumnBonus(skill, column) {
                 var mgr = this,
                     bonus = 0;
-                console.log('args', arguments);
                 if (!angular.isObject(column)) {
                     return;
                 }
                 bonus = column.getBonus(skill);
-                console.log(bonus);
                 if (column.isColumn && bonus > 0) {
                     return bonus;
                 }
@@ -108,7 +106,6 @@
                 if (angular.isFunction(fn)) {
                     for (idx = 0; idx < cols.length; idx++) {
                         result = fn(cols[idx]);
-                        console.log(result);
                         if (result) {
                             return result;
                         }
@@ -147,10 +144,8 @@
                     }
                 }
                 if (angular.isUndefined(byLevel)) {
-                    console.log('rotated', result);
                     return result;
                 }
-                //console.log(result[byLevel]);
                 if (result.hasOwnProperty(byLevel)) {
                     return result[byLevel];
                 } else {
@@ -304,20 +299,7 @@
                             csvLines.push(csvArr);
                         }
                     }
-
-                    //@todo wrong
-                    //Rotate lines into columns
-                    //Sort to get longest row first
-                    //csvLines.sort(function (a, b) {
-                    //    return a.length < b.length;
-                    //});
-                    //columns = csvLines[0].map(function (col, i) {
-                        //return csvLines.map(function (row) {
-                        //    return row[i];
-                        //});
-                    //});
                     columns = mgr._rotateArray(csvLines);
-                    console.log('cols?', columns);
                     //Add columns;
                     for (idx = 0; idx < columns.length; idx++) {
                         newCol = new SkillColumn(columns[idx]);
@@ -346,9 +328,6 @@
                 result = result.map( function (col,i) {
                     return col.reverse();
                 });
-                console.log('====');
-                console.log(result);
-                console.log('====');
                 return result;
             }
 
