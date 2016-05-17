@@ -41,12 +41,19 @@
             return result;
         }
         function getStressTrackSkills () {
-            var mgr = this.mgr;
+            var mgr = this.mgr,
+                skills = mgr.getSkills(),
+                i;
             if (!mgr.trackSkills) {
                 mgr.trackSkills = {
                     will : 0,
                     physique: 0
                 };
+            }
+            for ( i = 0; i < skills.length; i++) {
+                if (!mgr.trackSkills.hasOwnProperty(skills[i])) {
+                    mgr.trackSkills[skills[i]] = mgr.getBonus(skills[i]);
+                }
             }
             mgr.trackSkills.will = mgr.getBonus('will');
             mgr.trackSkills.physique = mgr.getBonus('physique');

@@ -35,13 +35,26 @@
             mgr._rotateArray = _rotateArray;
             mgr.getData = getData;
             mgr.exportCols = exportCols;
-            //@todo this needs to work to prevent repeats in separate columns.
             // Optimally, this adds the skill to each of the columns.
             mgr.addSkill = addSkill;
             mgr.hasEmptySlot = hasEmptySlot;
 
+            mgr.getSkills = getSkills;
+            activate();
             return mgr;
 
+            function activate () {
+                var skills = mgr.getSkills(),
+                    i;
+            }
+
+            function getSkills () {
+                var result = [];
+                mgr.eachColumn( function (col) {
+                    result.concat(col.getSkills());
+                });
+                return result;
+            }
 
             function addSkill (adding, position) {
                 var mgr = this,
@@ -216,7 +229,7 @@
                     cols = mgr.cols,
                     idx = 0;
                 for (idx = 0; idx < cols.length; idx++) {
-                    action.apply(mgr, (arguments).concat(cols[idx]));
+                    action.apply(mgr || context, angular.isArray(arguments) ? (arguments).concat(cols[idx]) : [cols[idx]]);
                 }
             }
 

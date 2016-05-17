@@ -23,6 +23,7 @@
                 col.isUniqueSkill = isUniqueSkill;
                 col.toSkillObj = toSkillObj;
                 col.toString = toString;
+                col.getSkills = getSkills;
                 col.reset = reset;
                 //Load Skills if Provided
                 if (angular.isArray(skills)) {
@@ -138,6 +139,18 @@
                     }
                     return result;
                 }
+                function getSkills () {
+                    var col = this,
+                        skills = col.skills,
+                        i = 0,
+                        skillObj = {},
+                        result = [];
+                    for (i = 0; i < skills.length; i++) {
+                        result.push(skills[i].skill);
+                    }
+                    return result;
+                }
+
                 function toSkillObj (skill) {
                     var col = this;
                     if (angular.isString(skill)) {
