@@ -1,6 +1,8 @@
 # Fate Sheet
 ## fatesheet
 
+[Click Here](http://htmlpreview.github.io/?https://github.com/hgehlhausen/fatesheet/blob/feature/make-project-live/index.html) To view the live-sheet
+
 #### Description
 
 ----
