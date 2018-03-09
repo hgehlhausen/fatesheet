@@ -24,8 +24,14 @@
         function activate() {
             var tmp = localStorageProvider.get(
                 localStorageProvider.get('last_character')
-                ),
+                );
+            var id = null;
+
+            if (tmp && tmp.hasOwnProperty) { // quick test if object
                 id = tmp.id;
+            }
+
+            // Escape execution thread
             setTimeout( function () {
                 load(tmp,id);
             },1);
