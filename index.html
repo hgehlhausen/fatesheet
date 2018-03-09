@@ -3,8 +3,10 @@
 <head>
     <title>{{[title,'[',setting,']'].join(' ')}}</title>
     <link href="css/style.css" rel="stylesheet" type="text/css">
-    <script src="bower_components/angular/angular.min.js"></script>
-    <script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    <link href="css/font.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    <script type="text/javascript" src="node_modules/angular-collection/angular-collection.min.js"></script>
     <!--<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>-->
 
 
@@ -22,9 +24,6 @@
     <script src="app/modules/app/app.config.js"></script>
     <script src="app/modules/app/app.run.js"></script>
     <link href="app/modules/app/app.style.css" rel="stylesheet" type="text/css">
-
-
-
 
     <!-- Campaign Setting -->
     <script src="app/modules/setting/setting.module.js"></script>
@@ -51,6 +50,7 @@
     <script src="app/modules/aspect/aspect.controller.js"></script>
     <script src="app/modules/aspect/aspect.directive.js"></script>
     <script src="app/modules/aspect/aspectslot.directive.js"></script>
+    <script src="app/modules/aspect/aspectmanager.factory.js"></script>
     <link href="app/modules/aspect/aspect.style.css" rel="stylesheet" type="text/css">
 
     <script src="app/modules/character/character.module.js"></script>
