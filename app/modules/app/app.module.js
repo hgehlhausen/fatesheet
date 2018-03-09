@@ -6,7 +6,8 @@
             'stress',
             'aspects',
             'character',
-            'LocalStorageModule'
+            'LocalStorageModule',
+            'ngCollection'
         ]);
 })();
 

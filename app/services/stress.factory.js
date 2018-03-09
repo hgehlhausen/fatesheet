@@ -19,6 +19,11 @@
                 total: 2,
                 base : 2,
                 boxes : [{},{}]
+            },
+            hunger : {
+                total : 2,
+                base : 2,
+                boxes : [{},{}]
             }
         };
 
@@ -26,6 +31,7 @@
         function updateStressBoxes () {
             var result = {
                     mental : [{},{}],
+                    hunger : [{},{}],
                     physical : [{},{}]
             },
                 skills = Skills.getStressTrackSkills(),
@@ -38,6 +44,10 @@
                     result.mental.push({});
                 }
                 service.mental.boxes = result.mental;
+                for (idx = 0; idx < service.additionalBoxes(skills.will); idx++) {
+                    result.hunger.push({});
+                }
+                service.hunger.boxes = result.hunger;
             }
             if (skills.hasOwnProperty('physique')) {
                 for (idx = 0; idx < service.additionalBoxes(skills.physique); idx++) {

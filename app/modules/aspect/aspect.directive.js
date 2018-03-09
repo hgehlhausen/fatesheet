@@ -10,7 +10,9 @@
         return {
             restrict : 'EA',
             templateUrl : 'app/modules/aspect/aspect.view.html',
-            scope : {}
+            scope : {
+                csForm : '='
+            }
         };
     }
 })();

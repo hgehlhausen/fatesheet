@@ -4,16 +4,20 @@
  */
 (function () {
     'use strict';
+    SkillService.$inject = ['SkillColumn','SkillColumnManager'];
     angular.module('services')
         .factory('SkillService',SkillService);
-    SkillService.$inject = ['SkillColumn','SkillColumnManager'];
     function SkillService (SkillColumn, SkillColumnManager) {
         var service = {
             mgr : new SkillColumnManager(),
             data : '',
             datatype : 'text/csv',
             generateRotated : generateRotated,
-            getStressTrackSkills : getStressTrackSkills
+            getStressTrackSkills : getStressTrackSkills,
+            getData : getData,
+            setData : setData,
+            exportCols : exportCols,
+            fromCsv : fromCsv
         };
         return service;
         function generateRotated (rows) {
@@ -38,10 +42,47 @@
         }
         function getStressTrackSkills () {
             var mgr = this.mgr;
-            return {
-                will : mgr.getBonus('will'),
-                physique : mgr.getBonus('physique')
-            };
+            if (!mgr.trackSkills) {
+                mgr.trackSkills = {
+                    will : 0,
+                    physique: 0
+                };
+            }
+            mgr.trackSkills.will = mgr.getBonus('will');
+            mgr.trackSkills.physique = mgr.getBonus('physique');
+            return mgr.trackSkills;
+        }
+        function getData () {
+            var mgr = this.mgr,
+                result = [];
+            mgr.cols.map(function (column,idx) {
+                result[idx] = [];
+                column.skills.map(function (skill,idy) {
+                    result[idx][idy] = skill.skill;
+                });
+            });
+            return result;
+        }
+        function setData (data) {
+            var mgr = this.mgr;
+            if(angular.isUndefined(data)) { return; }
+            if (!data) { return; }
+            if (!angular.isArray(data)) {
+                data = [data];
+            }
+            mgr.resetCols();
+
+            data.map(function (column,idx) {
+                mgr.addNewColumn(
+                    new SkillColumn(column)
+                );
+            });
+        }
+        function exportCols (type) {
+            return this.mgr.exportCols(type);
+        }
+        function fromCsv (csvData) {
+            return this.mgr.fromCsv(csvData);
         }
     }
 

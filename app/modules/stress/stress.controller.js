@@ -12,13 +12,15 @@
         var stressTracks = this;
         $scope.mental = [{},{}];
         $scope.physical = [{},{}];
-        activate ();
+        $scope.hunger = [{},{}];
+        activate();
         return stressTracks;
         ////////////////////////////////////////////////////////
         function activate () {
             Stress.updateStressBoxes();
             $scope.mental = Stress.mental.boxes;
             $scope.physical = Stress.physical.boxes;
+            $scope.hunger = Stress.hunger.boxes;
         }
     }
 })();

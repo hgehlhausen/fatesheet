@@ -4,5 +4,7 @@
  * aspect.module for fatesheet
  */
 (function () {
-    angular.module('aspects',[]);
+    angular.module('aspects',[
+        'ngCollection'
+    ]);
 })();
